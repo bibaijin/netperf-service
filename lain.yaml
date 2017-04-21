@@ -1,0 +1,13 @@
+appname: netperf-service
+
+build:
+  base: registry.yxapp.xyz/centos:1.0.1
+  prepare:
+    version: 20170421
+  script:
+    - cd netperf-2.7.0 && ./configure && make && make install
+
+proc.worker:
+  cmd: netserver -p 8080
+  port: 8080
+  memory: 64M
